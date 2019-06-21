@@ -1,7 +1,7 @@
 <?php
 echo __html('form', [
     'title'    => "Contact Us",
-    'subtitle' => "support@refracted.consulting",
+    'subtitle' => SUPPORT_EMAIL,
     'fields'   => [
         'customer_name'  => [
             'placeholder' => 'Your Name',
