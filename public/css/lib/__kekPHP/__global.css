@@ -1,0 +1,46 @@
+button,
+.button
+{
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    text-decoration: none;
+    word-wrap: normal;
+    text-align: center;
+    outline: none;
+}
+
+.unselectable
+{
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+.home_button
+{
+    width: 100%;
+    padding: 5px 0;
+    color: #fff;
+    margin-bottom: 1px;
+}
+
+.home_button > h1
+{
+    font-size: 14pt;
+    font-weight: bolder;
+}
+
+.home_button > p
+{
+    font-size: 9pt;
+}
+
+.home_button > img
+{
+    width: 35px;
+}

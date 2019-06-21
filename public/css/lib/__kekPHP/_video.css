@@ -1,0 +1,8 @@
+#player,
+#player > div
+{
+    position: relative;
+    width: 100%;
+    height: calc(100% - 40px);
+    background-color: #000 !important;
+}

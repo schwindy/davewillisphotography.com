@@ -1,0 +1,56 @@
+.docs
+{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.docs > button
+{
+    opacity: 1;
+}
+
+.docs > button:hover
+{
+    opacity: 0.75;
+}
+
+.doc
+{
+    width: 100%;
+    float: left;
+    display: block;
+}
+
+.doc > p,
+.doc > input,
+.doc > select,
+.doc > button
+{
+    float: left;
+    width: 33.3%;
+    height: 30px;
+    transition: all 0.2s;
+}
+
+.doc > input,
+.doc > select
+{
+    width: 66.6%;
+}
+
+.doc > input
+{
+    padding: 5px 10px;
+}
+
+.doc > button
+{
+    border: 1px inset #fff;
+    outline: 0;
+}
+
+.doc > button:hover
+{
+    opacity: 0.8;
+}

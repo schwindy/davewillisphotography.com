@@ -1,0 +1,211 @@
+/* Foreground Color Presets */
+.black
+{
+    color: #000 !important;
+}
+
+.dark_grey
+{
+    color: #343434 !important;
+}
+
+.grey
+{
+    color: #535353 !important;
+}
+
+.light_grey
+{
+    color: #6f6f6f !important;
+}
+
+.dark_red
+{
+    color: rgb(187, 23, 8) !important;
+}
+
+.red
+{
+    color: rgb(218, 26, 15) !important;
+}
+
+.light_red
+{
+    color: rgb(254, 20, 40) !important;
+}
+
+.dark_orange
+{
+    color: rgb(255, 126, 0) !important;
+}
+
+.orange
+{
+    color: rgb(255, 149, 0) !important;
+}
+
+.light_orange
+{
+    color: rgb(255, 164, 0) !important;
+}
+
+.dark_yellow
+{
+    color: rgb(203, 212, 6) !important;
+}
+
+.yellow
+{
+    color: rgb(223, 232, 6) !important;
+}
+
+.light_yellow
+{
+    color: rgb(236, 245, 6) !important;
+}
+
+.dark_green
+{
+    color: rgb(14, 139, 32) !important
+}
+
+.green
+{
+    color: rgb(14, 176, 39) !important
+}
+
+.light_green
+{
+    color: rgb(14, 230, 47) !important
+}
+
+.light_blue
+{
+    color: rgb(0, 165, 255) !important;
+}
+
+.blue
+{
+    color: rgb(0, 102, 255) !important;
+}
+
+.dark_blue
+{
+    color: rgb(6, 0, 255) !important;
+}
+
+.purple
+{
+    color: #8a01dd !important;
+}
+
+.white
+{
+    color: #fff !important;
+}
+
+/* Background Color Presets */
+.black_bg
+{
+    background-color: #000 !important;
+}
+
+.dark_grey_bg
+{
+    background-color: #343434 !important;
+}
+
+.grey_bg
+{
+    background-color: #535353 !important;
+}
+
+.light_grey_bg
+{
+    background-color: #6f6f6f !important;
+}
+
+.dark_red_bg
+{
+    background-color: rgb(187, 23, 8) !important;
+}
+
+.red_bg
+{
+    background-color: rgb(218, 26, 15) !important;
+}
+
+.light_red_bg
+{
+    background-color: rgb(254, 20, 40) !important;
+}
+
+.dark_orange_bg
+{
+    background-color: rgb(255, 126, 0) !important;
+}
+
+.orange_bg
+{
+    background-color: rgb(255, 149, 0) !important;
+}
+
+.light_orange_bg
+{
+    background-color: rgb(255, 164, 0) !important;
+}
+
+.dark_yellow_bg
+{
+    background-color: rgb(203, 212, 6) !important;
+}
+
+.yellow_bg
+{
+    background-color: rgb(223, 232, 6) !important;
+}
+
+.light_yellow_bg
+{
+    background-color: rgb(255, 243, 89) !important;
+}
+
+.dark_green_bg
+{
+    background-color: rgb(14, 139, 32) !important
+}
+
+.green_bg
+{
+    background-color: rgb(14, 176, 39) !important
+}
+
+.light_green_bg
+{
+    background-color: rgb(14, 230, 47) !important
+}
+
+.light_blue_bg
+{
+    background-color: rgb(0, 165, 255) !important;
+}
+
+.blue_bg
+{
+    background-color: rgb(0, 102, 255) !important;
+}
+
+.dark_blue_bg
+{
+    background-color: rgb(6, 0, 255) !important;
+}
+
+.purple_bg
+{
+    background-color: #8a01dd !important;
+}
+
+.white_bg
+{
+    background-color: #fff !important;
+}

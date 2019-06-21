@@ -1,0 +1,20 @@
+.italic,
+.text_italic
+{
+    font-style: italic;
+}
+
+.text_left
+{
+    text-align: left;
+}
+
+.text_center
+{
+    text-align: center;
+}
+
+.text_right
+{
+    text-align: right;
+}

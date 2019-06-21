@@ -1,0 +1,19 @@
+.__search,
+.kek_search > #q
+{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.__search > h1,
+.__search > h2,
+.__search > h3,
+.__search > p
+{
+
+}
+
+.kek_search > #q
+{
+    width: 85%;
+}

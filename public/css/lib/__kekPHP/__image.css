@@ -1,0 +1,12 @@
+.image_element
+{
+    position: relative;
+    width: 100%;
+}
+
+.image_element > img
+{
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+}

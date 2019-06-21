@@ -1,0 +1,71 @@
+nav
+{
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    top: 0;
+    background-color: #24a7f2;
+    z-index: 9999;
+}
+
+.nav_item
+{
+    display: inline-block;
+    height: 100%;
+}
+
+.nav_item > i
+{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    top: 5px;
+}
+
+#nav_1
+{
+    position: absolute;
+    float: left;
+    top: 0;
+    left: 0;
+    padding: 0 40px;
+}
+
+#nav_2
+{
+    position: relative;
+    display: block;
+    width: 35%;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #0D8EE4;
+}
+
+#nav_3
+{
+    position: absolute;
+    float: right;
+    top: 0;
+    right: 0;
+    padding: 0 40px;
+}
+
+#nav_1 > i
+{
+    top: 6px;
+}
+
+#nav_2 > i
+{
+    top: 6px;
+}
+
+#nav_3 > i
+{
+    top: 6px;
+}
+
+.__logout_button > i
+{
+    top: 0 !important;
+}

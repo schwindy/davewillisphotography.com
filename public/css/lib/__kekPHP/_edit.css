@@ -1,0 +1,96 @@
+.__edit
+{
+
+}
+
+.__edit > .title
+{
+    text-transform: capitalize;
+    text-decoration: none;
+    color: #575757;
+    font-size: 30px;
+    text-align: center;
+    font-weight: 600;
+    position: relative;
+    margin: 25px 0;
+    padding: 0;
+    line-height: 40px;
+    display: block;
+}
+
+.__edit_button
+{
+    display: inline-block;
+    margin: 2.5px 0;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s cubic-bezier(0, 0, 0.2, 1) 0s;
+}
+
+.__edit_button:hover
+{
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.33);
+}
+
+.__edit_button > i,
+.__edit_button > span
+{
+    position: relative;
+}
+
+.__edit_button > i
+{
+    top: 3px;
+}
+
+.__edit_button > span
+{
+    top: -3px;
+}
+
+.disable_edit
+{
+    cursor: default !important;
+}
+
+.disable_edit:hover
+{
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+.disable_edit > .arrow_right
+{
+    display: none;
+}
+
+.opacity_1
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5)
+}
+
+fieldset > div
+{
+    position: relative;
+}
+
+fieldset > div > input
+{
+    display: block !important;
+}
+
+.sa-error-container > .error_message
+{
+    left: 0;
+    margin-top: 3px;
+    margin-right: 49px;
+}

@@ -1,0 +1,3 @@
+# Cron Environment Configuration
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+path = /var/www/skippy.thewashplant.com/thewashplant-kek/

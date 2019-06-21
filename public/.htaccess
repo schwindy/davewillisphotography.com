@@ -1,0 +1,10 @@
+Options -MultiViews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
+
+Redirect 301 /exchange /exchanges/view
+Redirect 301 /exchange_market /xmarkets/view
+Redirect 301 /exchange_markets /xmarkets
+Redirect 301 /market /markets/view
+Redirect 301 /xmarket /xmarkets/view

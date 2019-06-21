@@ -1,0 +1,71 @@
+$(eval $(call import.MODULE.defs,TEST,test,LIBHB))
+$(eval $(call import.GCC,TEST))
+
+TEST.src/   = $(SRC/)test/
+TEST.build/ = $(BUILD/)test/
+
+TEST.c   = $(wildcard $(TEST.src/)*.c)
+TEST.c.o = $(patsubst $(SRC/)%.c,$(BUILD/)%.o,$(TEST.c))
+
+TEST.exe = $(BUILD/)$(call TARGET.exe,$(HB.name)CLI)
+
+TEST.GCC.L = $(CONTRIB.build/)lib
+
+TEST.libs = $(LIBHB.a)
+
+TEST.GCC.l = \
+        ass avresample avformat avcodec avutil mp3lame dvdnav dvdread \
+        fontconfig fribidi ogg \
+        samplerate swscale vpx theoraenc theoradec vorbis vorbisenc x264 \
+        bluray freetype xml2 bz2 z jansson
+
+ifeq (1,$(FEATURE.qsv))
+    TEST.GCC.D += USE_QSV HAVE_THREADS=1
+endif
+
+ifeq (1,$(FEATURE.x265))
+    TEST.GCC.D += USE_X265
+endif
+
+TEST.GCC.l += $(foreach m,$(MODULES.NAMES),$($m.OSL.libs))
+
+TEST.install.exe = $(DESTDIR)$(PREFIX/)bin/$(notdir $(TEST.exe))
+
+###############################################################################
+
+TEST.out += $(TEST.c.o)
+TEST.out += $(TEST.exe)
+
+BUILD.out += $(TEST.out)
+BUILD.out += $(TEST.install.exe)
+
+###############################################################################
+
+TEST.GCC.I += $(LIBHB.GCC.I)
+
+ifeq ($(BUILD.system),darwin)
+    TEST.GCC.f += IOKit CoreServices AudioToolbox Foundation
+    TEST.GCC.l += iconv
+else ifeq ($(BUILD.system),linux)
+    TEST.GCC.l += pthread dl m
+else ifeq ($(BUILD.system),kfreebsd)
+    TEST.GCC.l += pthread dl m
+else ifeq ($(BUILD.system),solaris)
+    TEST.GCC.l += pthread nsl socket iconv
+    TEST.GCC.D += _POSIX_C_SOURCE=200112L __EXTENSIONS__
+else ifeq (1-mingw,$(BUILD.cross)-$(BUILD.system))
+ifeq ($(HAS.dlfcn),1)
+    TEST.GCC.l += dl
+endif
+ifeq (1,$(FEATURE.hwd))
+    TEST.GCC.D += USE_HWD
+endif
+ifeq (1,$(HAS.pthread))
+    TEST.GCC.l += pthread
+else
+    TEST.GCC.l += pthreadGC2
+endif
+    TEST.GCC.l += iconv ws2_32 regex uuid ole32
+    TEST.GCC.D += PTW32_STATIC_LIB
+    TEST.GCC.args.extra.exe++ += -static
+endif #   (1-mingw,$(BUILD.cross)-$(BUILD.system))

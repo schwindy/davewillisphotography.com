@@ -1,0 +1,15 @@
+.card:not(:last-child)
+{
+    margin-bottom: 20px;
+}
+
+.card:last-child
+{
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+.card > p
+{
+    text-align: center;
+}

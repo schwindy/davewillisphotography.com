@@ -1,0 +1,23 @@
+body
+{
+    font-family: 'Roboto', sans-serif !important;
+    color: #000;
+}
+
+.theme_color
+{
+    background-color: #24a7f2 !important;
+    color: #fff;
+}
+
+.theme_color2
+{
+    background-color: rgb(248, 152, 53) !important;
+    color: #fff;
+}
+
+.theme_black_overlay
+{
+    background-color: rgba(0, 0, 0, 0.28) !important;
+    color: #fff;
+}

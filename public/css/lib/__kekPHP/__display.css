@@ -1,0 +1,99 @@
+.display_block
+{
+    display: block
+}
+
+.display_block_i
+{
+    display: block !important
+}
+
+.display_flex
+{
+    display: flex
+}
+
+.display_flex_i
+{
+    display: flex !important
+}
+
+.display_grid
+{
+    display: grid
+}
+
+.display_grid_i
+{
+    display: grid !important
+}
+
+.display_inherit
+{
+    display: inherit
+}
+
+.display_inherit_i
+{
+    display: inherit !important
+}
+
+.display_inline
+{
+    display: inline
+}
+
+.display_inline_i
+{
+    display: inline !important
+}
+
+.display_inline_block
+{
+    display: inline-block
+}
+
+.display_inline_block_i
+{
+    display: inline-block !important
+}
+
+.display_inline_flex
+{
+    display: inline-flex
+}
+
+.display_inline_flex_i
+{
+    display: inline-flex !important
+}
+
+.display_inline_table
+{
+    display: inline-table
+}
+
+.display_inline_table_i
+{
+    display: inline-table !important
+}
+
+.display_none
+{
+    display: none
+}
+
+.display_none_i
+{
+    display: none !important;
+}
+
+.display_table
+{
+    display: table
+}
+
+.display_table_i
+{
+    display: table !important
+}

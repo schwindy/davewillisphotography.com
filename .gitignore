@@ -1,0 +1,17 @@
+*.log
+
+# IntelliJ project files
+.idea
+.idea/
+*.iml
+out
+gen
+
+vendor
+sandbox.*
+error_log
+
+config/private/*.php
+ssl/
+config/private/
+public/js/classes/depends/

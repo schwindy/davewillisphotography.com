@@ -1,0 +1,35 @@
+# Install Dependencies (OSX El Capitan)
+brew install bison27 -y
+brew install gcc -y
+brew install hiredis -y
+brew install valgrind -y
+
+cd ~
+git clone https://github.com/php/php-src
+cd ./php-src
+git checkout origin/master -b PHP-7.1.9
+cd ./ext
+git clone https://github.com/krakjoe/pthreads
+git clone https://github.com/nrk/phpiredis.git
+cd ../
+
+rm -f ./configure
+./buildconf --force
+
+env YACC=`brew --prefix bison27`/bin/bison \
+./configure \
+--enable-debug \
+--enable-embedded-mysqli \
+--enable-maintainer-zts \
+--enable-opcache \
+--enable-phpiredis \
+--enable-pthreads \
+--with-apxs2 \
+--with-curl \
+--with-mysqli \
+--with-zlib \
+--with-openssl=/usr/local/opt/openssl
+
+make clean
+make all
+sudo make install

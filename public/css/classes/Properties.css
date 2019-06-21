@@ -1,0 +1,46 @@
+.properties
+{
+    position: relative;
+    margin: 0 auto;
+}
+
+.properties > button
+{
+    opacity: 1;
+}
+
+.properties > button:hover
+{
+    opacity: 0.75;
+}
+
+.property
+{
+    width: 100%;
+    float: left;
+}
+
+.property > p,
+.property > input,
+.property > button
+{
+    float: left;
+    width: 30%;
+    transition: all 0.2s;
+}
+
+.property > input
+{
+    padding: 5px 10px;
+}
+
+.property > button
+{
+    border: 1px inset #fff;
+    outline: 0;
+}
+
+.property > button:hover
+{
+    opacity: 0.8;
+}

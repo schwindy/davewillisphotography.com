@@ -1,0 +1,130 @@
+pkg.create.deb:: $(PKG.gui.deb) $(PKG.cli.deb)
+pkg.create.rpm:: $(PKG.rpm.stamp)
+pkg.create.src.deb:: $(PKG.src.deb.stamp)
+pkg.create.tar:: pkg.create $(PKG.cli.tar)
+
+#
+# CLI Tar Package
+#
+
+$(PKG.cli.tar): | $(dir $(PKG.cli.tar))
+$(PKG.cli.tar): | $(STAGE.out.cli/)
+	cd $(STAGE.out.cli/) && $(TAR.exe) cjf $(call fn.ABSOLUTE,$(PKG.cli.tar)) .
+
+
+$(STAGE.out.cli/):
+	-$(MKDIR.exe) -p $@
+	$(CP.exe) HandBrakeCLI $(STAGE.out.cli/)
+	$(call STAGE.doc,$(STAGE.out.cli/))
+
+#
+# RPM binary package rules
+#
+$(PKG.rpm.src.tar.bz2): $(STAGE.out.rpm.src/)
+	$(TAR.exe) cjf $(PKG.rpm.src.tar.bz2) -C $(STAGE.out.rpm.src/) $(PKG.rpm.basename)
+
+$(STAGE.out.rpm.src/): GNUmakefile
+#	-$(MKDIR.exe) -p $(STAGE.out.rpm.src/)$(PKG.basename)
+#	tar c --exclude build ../* | tar x -C $(STAGE.out.rpm.src/)$(PKG.basename)
+	-$(RM.exe) -rf $(STAGE.out.src/)
+	make contrib.fetch
+	$(MKDIR.exe) -p $@
+	$(GIT.exe) -C $(SRC/) archive --format=tar --prefix=$(PKG.rpm.basename)/ $(HB.repo.shorthash) | $(TAR.exe) -xC $@
+	$(SRC/)scripts/repo-info.sh $(SRC/) > $@/$(PKG.rpm.basename)/version.txt
+	-$(MKDIR.exe) $(STAGE.out.rpm.src/)$(PKG.rpm.basename)/download
+	$(CP.exe) $(SRC/)download/*.tar.* $(STAGE.out.rpm.src/)$(PKG.rpm.basename)/download
+
+$(PKG.native.rpm.stamp): $(PKG.rpm.src.tar.bz2)
+	-$(MKDIR.exe) -p $(RPM.out/)SOURCES
+	-$(MKDIR.exe) -p $(RPM.out/)SPECS
+	-$(MKDIR.exe) -p $(RPM.out/)BUILD
+	-$(MKDIR.exe) -p $(RPM.out/)RPMS
+	-$(MKDIR.exe) -p $(RPM.out/)SRPMS
+	-$(MKDIR.exe) -p $(RPMROOT.out/)
+	echo "%define name $(HB.name.lower)" > $(RPM.out/)SPECS/ghb.spec
+	echo "%define release $(PKG.release)" >> $(RPM.out/)SPECS/ghb.spec
+	echo "%define version $(PKG.rpm.hb.version)" >> $(RPM.out/)SPECS/ghb.spec
+	cat $(GTK.src/)ghb.spec >> $(RPM.out/)SPECS/ghb.spec
+	$(CP.exe) $(PKG.rpm.src.tar.bz2) $(RPM.out/)SOURCES
+	rpmbuild --define="_topdir $(PWD)/$(RPM.out)" --buildroot $(RPMROOT.out) -ba $(RPM.out/)SPECS/ghb.spec
+	$(TOUCH.exe) $(PKG.native.rpm.stamp)
+
+$(PKG.rpm.stamp): | $(dir $(PKG.gui.rpm))
+$(PKG.rpm.stamp): $(PKG.native.rpm.stamp)
+	$(CP.exe) $(PKG.gui.native.rpm) $(PKG.gui.rpm)
+	$(CP.exe) $(PKG.cli.native.rpm) $(PKG.cli.rpm)
+	$(TOUCH.exe) $(PKG.rpm.stamp)
+
+#
+# Debian binary package rules
+#
+$(PKG.gui.tmp.deb): | $(dir $(PKG.gui.tmp.deb))
+$(PKG.gui.tmp.deb): GNUmakefile
+	-$(RM.exe) $(SRC/)debian
+	ln -s $(PWD)/$(PKG.debian) $(SRC/)debian
+	fakeroot $(MAKE) -C $(SRC/) -f debian/rules clean
+	$(MAKE) BUILDDIR=$(PWD)/$(BUILD) CONFIGURE=configure -C $(SRC/) -f debian/rules build
+	echo $(PKG.out/)
+	fakeroot $(MAKE) FORCEVERSION="-- -v$(HB.debversion)" BUILDDIR=$(PWD)/$(BUILD) CONFIGURE=configure PKGDESTDIR=$(PWD)/$(PKG.out/) -C $(SRC/) -f debian/rules binary
+
+$(PKG.gui.deb): | $(dir $(PKG.gui.deb))
+$(PKG.gui.deb): $(PKG.gui.tmp.deb)
+	$(MV.exe) $(PKG.gui.tmp.deb) $(PKG.gui.deb)
+
+$(PKG.cli.deb): | $(dir $(PKG.cli.deb))
+$(PKG.cli.deb): $(PKG.gui.tmp.deb)
+	$(MV.exe) $(PKG.cli.tmp.deb) $(PKG.cli.deb)
+
+#
+# Debian source package rules
+#
+pkg.push.src.deb:: $(PKG.src.deb.stamp)
+	(cd $(STAGE.out.src/)wily && dput handbrake-git-snapshots $(HB.name.lower)_$(HB.debversion)-zhb-1ppa1~wily1_source.changes )
+	(cd $(STAGE.out.src/)vivid && dput handbrake-git-snapshots $(HB.name.lower)_$(HB.debversion)-zhb-1ppa1~vivid1_source.changes )
+	(cd $(STAGE.out.src/)trusty && dput handbrake-git-snapshots $(HB.name.lower)_$(HB.debversion)-zhb-1ppa1~trusty1_source.changes )
+
+$(PKG.src.deb.stamp): GNUmakefile
+	-$(RM.exe) -rf $(STAGE.out.src/)
+	make contrib.fetch
+	$(MKDIR.exe) -p $(STAGE.out.src/)wily
+	$(GIT.exe) -C $(SRC/) archive --format=tar --prefix=$(PKG.deb.basename)/ $(HB.repo.shorthash) | $(TAR.exe) -xC $(STAGE.out.src/)wily/
+	$(SRC/)scripts/repo-info.sh $(SRC/) > $(STAGE.out.src/)wily/$(PKG.deb.basename)/version.txt
+	$(CP.exe) -a $(SRC/)download $(STAGE.out.src/)wily/$(PKG.deb.basename)
+	cp -a $(PWD)/$(PKG.debian) $(STAGE.out.src/)wily/$(PKG.deb.basename)
+	$(CP.exe) $(STAGE.out.src/)wily/$(PKG.deb.basename)/debian/control.wily $(STAGE.out.src/)wily/$(PKG.deb.basename)/debian/control
+	$(CP.exe) $(STAGE.out.src/)wily/$(PKG.deb.basename)/debian/rules.wily $(STAGE.out.src/)wily/$(PKG.deb.basename)/debian/rules
+	echo "$(HB.name.lower) ($(HB.debversion)-zhb-1ppa1~wily1) wily; urgency=low" > $(STAGE.out.src/)wily/$(PKG.deb.basename)/debian/changelog
+	echo "  * Snapshot" >> $(STAGE.out.src/)wily/$(PKG.deb.basename)/debian/changelog
+	echo "    - See timeline at http://trac.handbrake.fr/timeline" >> $(STAGE.out.src/)wily/$(PKG.deb.basename)/debian/changelog
+	echo "" >> $(STAGE.out.src/)wily/$(PKG.deb.basename)/debian/changelog
+	echo " -- John Stebbins <jstebbins.hb@gmail.com>  Sun, 11 Apr 2010 9:51:07 -0800" >> $(STAGE.out.src/)wily/$(PKG.deb.basename)/debian/changelog
+	$(TAR.exe) czf $(STAGE.out.src/)wily/$(PKG.src.deb.tar) -C $(STAGE.out.src/)wily $(PKG.deb.basename)
+	(cd $(STAGE.out.src/)wily/$(PKG.deb.basename) && debuild -S -kjstebbins.hb)
+	$(MKDIR.exe) -p $(STAGE.out.src/)vivid
+	$(GIT.exe) -C $(SRC/) archive --format=tar --prefix=$(PKG.deb.basename)/ $(HB.repo.shorthash) | $(TAR.exe) -xC $(STAGE.out.src/)vivid/
+	$(SRC/)scripts/repo-info.sh $(SRC/) > $(STAGE.out.src/)vivid/$(PKG.deb.basename)/version.txt
+	$(CP.exe) -a $(SRC/)download $(STAGE.out.src/)vivid/$(PKG.deb.basename)
+	cp -a $(PWD)/$(PKG.debian) $(STAGE.out.src/)vivid/$(PKG.deb.basename)
+	$(CP.exe) $(STAGE.out.src/)vivid/$(PKG.deb.basename)/debian/control.vivid $(STAGE.out.src/)vivid/$(PKG.deb.basename)/debian/control
+	$(CP.exe) $(STAGE.out.src/)vivid/$(PKG.deb.basename)/debian/rules.vivid $(STAGE.out.src/)vivid/$(PKG.deb.basename)/debian/rules
+	echo "$(HB.name.lower) ($(HB.debversion)-zhb-1ppa1~vivid1) vivid; urgency=low" > $(STAGE.out.src/)vivid/$(PKG.deb.basename)/debian/changelog
+	echo "  * Snapshot" >> $(STAGE.out.src/)vivid/$(PKG.deb.basename)/debian/changelog
+	echo "    - See timeline at http://trac.handbrake.fr/timeline" >> $(STAGE.out.src/)vivid/$(PKG.deb.basename)/debian/changelog
+	echo "" >> $(STAGE.out.src/)vivid/$(PKG.deb.basename)/debian/changelog
+	echo " -- John Stebbins <jstebbins.hb@gmail.com>  Sun, 11 Apr 2010 9:51:07 -0800" >> $(STAGE.out.src/)vivid/$(PKG.deb.basename)/debian/changelog
+	$(TAR.exe) czf $(STAGE.out.src/)vivid/$(PKG.src.deb.tar) -C $(STAGE.out.src/)vivid $(PKG.deb.basename)
+	(cd $(STAGE.out.src/)vivid/$(PKG.deb.basename) && debuild -S -kjstebbins.hb)
+	$(MKDIR.exe) -p $(STAGE.out.src/)trusty
+	$(GIT.exe) -C $(SRC/) archive --format=tar --prefix=$(PKG.deb.basename)/ $(HB.repo.shorthash) | $(TAR.exe) -xC $(STAGE.out.src/)trusty/
+	$(SRC/)scripts/repo-info.sh $(SRC/) > $(STAGE.out.src/)trusty/$(PKG.deb.basename)/version.txt
+	$(CP.exe) -a $(SRC/)download $(STAGE.out.src/)trusty/$(PKG.deb.basename)
+	cp -a $(PWD)/$(PKG.debian) $(STAGE.out.src/)trusty/$(PKG.deb.basename)
+	$(CP.exe) $(STAGE.out.src/)trusty/$(PKG.deb.basename)/debian/control.trusty $(STAGE.out.src/)trusty/$(PKG.deb.basename)/debian/control
+	$(CP.exe) $(STAGE.out.src/)trusty/$(PKG.deb.basename)/debian/rules.trusty $(STAGE.out.src/)trusty/$(PKG.deb.basename)/debian/rules
+	echo "$(HB.name.lower) ($(HB.debversion)-zhb-1ppa1~trusty1) trusty; urgency=low" > $(STAGE.out.src/)trusty/$(PKG.deb.basename)/debian/changelog
+	echo "  * Snapshot" >> $(STAGE.out.src/)trusty/$(PKG.deb.basename)/debian/changelog
+	echo "    - See timeline at http://trac.handbrake.fr/timeline" >> $(STAGE.out.src/)trusty/$(PKG.deb.basename)/debian/changelog
+	echo "" >> $(STAGE.out.src/)trusty/$(PKG.deb.basename)/debian/changelog
+	echo " -- John Stebbins <jstebbins.hb@gmail.com>  Sun, 11 Apr 2010 9:51:07 -0800" >> $(STAGE.out.src/)trusty/$(PKG.deb.basename)/debian/changelog
+	$(TAR.exe) czf $(STAGE.out.src/)trusty/$(PKG.src.deb.tar) -C $(STAGE.out.src/)trusty $(PKG.deb.basename)
+	(cd $(STAGE.out.src/)trusty/$(PKG.deb.basename) && debuild -S -kjstebbins.hb)

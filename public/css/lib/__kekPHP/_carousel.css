@@ -1,0 +1,20 @@
+.feature-carousel
+{
+    background-color: #000;
+}
+
+.owl-carousel .owl-item
+{
+    float: left;
+    background-color: rgba(68, 68, 68, 0.35);
+}
+
+.owl-item > a
+{
+    color: #fff;
+}
+
+.owl-item > a > img
+{
+    width: 100%;
+}

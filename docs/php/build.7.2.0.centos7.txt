@@ -1,0 +1,39 @@
+# Install Dependencies (CentOS 7)
+yum install autoconf -y
+yum install bison -y
+yum install curl -y
+yum install gcc gcc-devel -y
+yum install hiredis hiredis-devel -y
+yum install libasan -y
+yum install libsodium libsodium-devel -y
+yum install libxml2-devel -y
+yum install openssl openssl-devel -y
+yum install valgrind valgrind-devel -y
+
+cd ~
+git clone https://github.com/php/php-src
+cd ./php-src
+git checkout origin/master -b PHP-7.2
+cd ./ext
+git clone https://github.com/krakjoe/pthreads
+git clone https://github.com/nrk/phpiredis.git
+cd ../
+
+rm -f ./configure
+./buildconf --force
+
+./configure \
+--enable-debug \
+--enable-embedded-mysqli \
+--enable-maintainer-zts \
+--enable-opcache \
+--with-apxs2 \
+--with-curl \
+--with-mysqli \
+--with-openssl \
+--with-sodium \
+--with-zlib
+
+make clean
+make all
+make install

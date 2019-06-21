@@ -1,0 +1,61 @@
+PKG.deb.machine = `dpkg --print-architecture`
+PKG.rpm.machine = `rpm -E "%_target_cpu"`
+PKG.release = $(HB.repo.rev)
+PKG.rpm.dist = `rpm -E "%dist"`
+
+ifeq ($(HB.repo.tag),)
+    tag = 0.0.0
+endif
+ifeq ($(HB.repo.type),release)
+    PKG.rpm.hb.version = $(tag)
+else ifeq ($(HB.repo.branch),)
+    PKG.rpm.hb.version = $(tab).$(HB.repo.shorthash)
+else
+    PKG.rpm.hb.version = $(tag).$(HB.repo.shorthash).$(HB.repo.branch)
+endif
+
+
+###############################################################################
+
+PKG.cli.tar = $(PKG.out/)$(HB.name)-$(HB.version)-$(BUILD.machine)_CLI.tar.gz
+
+STAGE.out.cli/ = $(STAGE.out/)cli/
+
+###############################################################################
+
+PKG.rpm.basename = $(HB.name.lower)-$(PKG.rpm.hb.version)
+PKG.rpm.src.tar.bz2 = $(STAGE.out.src/)rpm/$(PKG.rpm.basename).tar.bz2
+STAGE.out.rpm.src/ = $(STAGE.out.src/)rpm/
+
+PKG.debian  = $(PKG.in/)linux/debian
+PKG.cli.deb = $(PKG.out/)$(HB.name)-$(HB.debversion)-Ubuntu_CLI_$(BUILD.machine).deb
+PKG.gui.deb = $(PKG.out/)$(HB.name)-$(HB.debversion)-Ubuntu_GUI_$(BUILD.machine).deb
+PKG.deb.basename = $(HB.name.lower)-$(HB.debversion)
+PKG.src.deb.tar = $(HB.name.lower)_$(HB.debversion).tar.gz
+PKG.src.deb.stamp = $(STAGE.out.src/).debsrc.stamp
+PKG.src.deb = $(PKG.out/)$(HB.name.lower)_$(HB.debversion).deb
+
+PKG.cli.tmp.deb = $(PKG.out/)$(HB.name.lower)-cli_$(HB.debversion)_$(PKG.deb.machine).deb
+PKG.gui.tmp.deb = $(PKG.out/)$(HB.name.lower)-gtk_$(HB.debversion)_$(PKG.deb.machine).deb
+
+PKG.native.rpm.stamp = $(RPM.out/).rpm.stamp
+PKG.rpm.stamp = $(PKG.out/).rpm.stamp
+
+PKG.gui.native.rpm = $(RPM.out/)RPMS/$(PKG.rpm.machine)/$(HB.name.lower)-gui-$(PKG.rpm.hb.version)-$(PKG.release)$(PKG.rpm.dist).$(PKG.rpm.machine).rpm
+PKG.cli.native.rpm = $(RPM.out/)RPMS/$(PKG.rpm.machine)/$(HB.name.lower)-cli-$(PKG.rpm.hb.version)-$(PKG.release)$(PKG.rpm.dist).$(PKG.rpm.machine).rpm
+
+PKG.cli.rpm  = $(PKG.out/)$(HB.name.lower)-cli-$(PKG.rpm.hb.version)-$(PKG.release)$(PKG.rpm.dist).$(PKG.rpm.machine).rpm
+PKG.gui.rpm  = $(PKG.out/)$(HB.name.lower)-gui-$(PKG.rpm.hb.version)-$(PKG.release)$(PKG.rpm.dist).$(PKG.rpm.machine).rpm
+RPM.out  = $(STAGE.out/)rpm
+RPM.out/ = $(STAGE.out/)rpm/
+RPMROOT.out  = $(PWD)/$(STAGE.out/)rpmroot
+RPMROOT.out/ = $(PWD)/$(STAGE.out/)rpmroot/
+
+###############################################################################
+
+BUILD.out += $(PKG.src.tar)
+BUILD.out += $(PKG.cli.deb)
+BUILD.out += $(PKG.gui.deb)
+BUILD.out += $(PKG.cli.rpm)
+BUILD.out += $(PKG.gui.rpm)
+BUILD.out += $(PKG.cli.tar)

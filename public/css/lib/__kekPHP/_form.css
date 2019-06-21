@@ -1,0 +1,26 @@
+.kek_form,
+form
+{
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.kek_form > input,
+form > input
+{
+    width: 80%;
+    padding: 15px 25px;
+    margin: 10px 0 25px;
+    font-size: 14px;
+}
+
+.kek_form > button,
+form > button
+{
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    border: 0;
+}

@@ -1,0 +1,9 @@
+.property > p,
+.property > input,
+.property > button
+{
+    width: 30%;
+    height: auto !important;
+    float: left;
+    transition: all 0.2s;
+}

@@ -1,0 +1,16 @@
+{
+    "repositories": [
+        {
+            "type": "pear",
+            "url": "http://pear.php.net"
+        }
+    ],
+    "require": {
+        "microsoft/windowsazure": "*",
+        "pear-pear.php.net/mail_mime": "*",
+        "pear-pear.php.net/http_request2": "*",
+        "pear-pear.php.net/mail_mimedecode": "*",
+        "phpdocumentor/phpdocumentor": "^2.8",
+        "elasticsearch/elasticsearch": "~2.0"
+    }
+}

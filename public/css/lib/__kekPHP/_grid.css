@@ -1,0 +1,18 @@
+.grid
+{
+
+}
+
+.grid_item
+{
+    width: 20%;
+    float: left;
+}
+
+@media (max-width: 1000px)
+{
+    .grid_item
+    {
+        width: 50%;
+    }
+}

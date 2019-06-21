@@ -1,0 +1,37 @@
+.options
+{
+    position: relative;
+    margin: 0 auto;
+}
+
+.option
+{
+    width: 100%;
+    float: left;
+}
+
+.option > p,
+.option > input,
+.option > button
+{
+    float: left;
+    width: 33.3%;
+    height: 30px;
+    transition: all 0.2s;
+}
+
+.option > input
+{
+    padding: 5px 10px;
+}
+
+.option > button
+{
+    border: 1px inset #fff;
+    outline: 0;
+}
+
+.option > button:hover
+{
+    opacity: 0.8;
+}

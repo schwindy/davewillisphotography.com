@@ -1,0 +1,115 @@
+.shop_grid
+{
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+.shop_item,
+.shop_tile
+{
+    position: relative;
+    width: 24%;
+    float: left;
+    text-align: center;
+    padding: 15px 0;
+    min-width: 20%;
+    min-height: 500px;
+    margin: 0 0.5%;
+}
+
+.shop_item:nth-child(5),
+.shop_tile:nth-child(5)
+{
+    clear: left;
+}
+
+.shop_item_thumbnail,
+.shop_tile_thumbnail
+{
+    position: relative;
+    max-width: calc(90%);
+    max-height: 200px;
+}
+
+.shop_item_header,
+.shop_item_title,
+.shop_tile_header
+{
+    font-size: 16pt;
+    font-weight: 600;
+    width: 80%;
+    min-height: 52px;
+    margin: 10px auto 0;
+}
+
+.shop_item_bio,
+.shop_tile_bio
+{
+    width: 80%;
+    min-height: 70px;
+    margin: 10px auto 0;
+    font-size: 13pt;
+    line-height: 15pt;
+}
+
+.shop_item_price,
+.shop_tile_price
+{
+    font-weight: 600 !important;
+    color: #000 !important;
+    opacity: 1;
+}
+
+.shop_item_button,
+.shop_tile_button
+{
+    position: relative;
+    display: block;
+    width: 90%;
+    color: #fff;
+    background-color: rgba(124, 22, 255, 0.97);
+    margin: 0 auto;
+    border-radius: 0;
+    padding: 10px 0;
+    outline: 0;
+    border: 0;
+    opacity: 1;
+    transition: all 0.3s;
+}
+
+.shop_item_button:hover,
+.shop_tile_button:hover
+{
+    opacity: 0.75;
+}
+
+.options > select
+{
+    position: relative;
+    width: 90%;
+    left: 5%;
+}
+
+@media (max-width: 1200px)
+{
+    .shop_grid
+    {
+        display: block;
+    }
+
+    .shop_item,
+    .shop_tile
+    {
+        width: 90%;
+        margin: 0 auto;
+        float: none;
+        height: auto !important;
+    }
+
+    .shop_item_thumbnail
+    {
+        height: auto;
+        max-width: 75% !important;
+    }
+}

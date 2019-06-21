@@ -1,0 +1,18 @@
+.elements
+{
+    position: relative;
+    margin: 0 auto;
+}
+
+.element
+{
+    width: 100%;
+    float: left;
+}
+
+.element > p,
+.element > button
+{
+    float: left;
+    width: 20%;
+}

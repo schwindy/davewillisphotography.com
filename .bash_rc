@@ -1,0 +1,27 @@
+# .bashrc (root)
+
+# Server Information
+KEK_HOST="Skippy-0"
+
+# Output Format
+PS1='$KEK_HOST::\w\$ '
+
+# kekPHP
+SERVER_NAME="Skippy-0"
+KEK_PATH="/var/www/thewashplant.com/thewashplant-kek/"
+KEK_CRON='php-cgi /var/www/thewashplant.com/thewashplant-kek/elements/cron.php'
+KEK_DB='php-cgi /mnt/kekdb/daemon/start.php'
+KEK_VERSION='0.0.1'
+alias kek='$KEK_PATH'
+alias kek-cron='$KEK_CRON'
+alias kek-db='$KEK_DB'
+
+# Linux Command Aliases
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi

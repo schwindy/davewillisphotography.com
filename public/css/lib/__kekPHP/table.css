@@ -1,0 +1,121 @@
+table
+{
+    position: relative;
+    width: 100%;
+    margin-bottom: 50px;
+    border-collapse: separate !important;
+}
+
+.table
+{
+    padding: 0;
+    margin-top: 0;
+}
+
+.table > h2
+{
+    font-size: 24pt;
+    padding: 15px 0;
+}
+
+tr
+{
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+tr:hover
+{
+    background-color: rgba(0, 160, 240, 0.23);
+}
+
+tr:first-child
+{
+    border-top: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+tr > .button:hover
+{
+    opacity: .75;
+}
+
+th
+{
+    background-color: #2196f3;
+    color: #fff;
+    font-weight: bold;
+    border-right: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+th > a
+{
+    display: block;
+    padding: 12px 0;
+}
+
+th:hover
+{
+    background-color: #4bb3fd;
+}
+
+td
+{
+    border-right: 1px solid rgba(161, 163, 165, 0.76);
+    padding: 0;
+}
+
+td > .__edit_button
+{
+    height: calc(100%);
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+}
+
+td > .__edit_button > i
+{
+    top: calc(10%);
+}
+
+td.button > a
+{
+    display: inline-block;
+    width: 100%;
+    padding: 0;
+    color: #fff;
+    height: calc(100%);
+}
+
+td.button > a > i
+{
+    position: relative;
+    top: 3px;
+}
+
+th,
+td
+{
+    border-bottom: 1px solid #7d898b;
+}
+
+th:first-child,
+td:first-child
+{
+    border-left: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+tr,
+th,
+td > a,
+td.button
+{
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+}
+
+@media (max-width: 1200px)
+{
+    .table
+    {
+        width: 100%;
+    }
+}

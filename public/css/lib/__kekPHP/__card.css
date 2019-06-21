@@ -1,0 +1,43 @@
+.card
+{
+    width: 90%;
+    max-width: 1400px;
+    margin: 15px auto;
+    padding: 15px 40px;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26);
+    box-sizing: border-box;
+}
+
+.card:last-of-type
+{
+    margin-bottom: 50px;
+}
+
+.card:first-of-type
+{
+    margin-bottom: 0;
+}
+
+.card > a
+{
+    opacity: 1;
+}
+
+.card > a:hover
+{
+    opacity: 0.75;
+}
+
+.card > p
+{
+    color: #000;
+}
+
+.card > img
+{
+    display: block;
+    max-width: 700px;
+    margin: 0 auto;
+}

@@ -1,0 +1,51 @@
+.kek_menu
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+.kek_menu > a
+{
+    display: inline-block;
+    width: calc(50% - 77px);
+    padding: 10px 36px;
+    background-color: #2489f2;
+    flex-basis: auto;
+    text-align: center;
+    color: #fff;
+}
+
+.kek_menu > a:nth-of-type(4n + 1),
+.kek_menu > a:nth-of-type(4n + 4)
+{
+    background-color: #226ccb;
+}
+
+.kek_menu > a:nth-of-type(4n + 2),
+.kek_menu > a:nth-of-type(4n + 3)
+{
+    background-color: rgba(95, 0, 255, 1);
+}
+
+@media (max-width: 850px)
+{
+
+    .kek_menu > a
+    {
+        width: 100%;
+        text-align: center;
+    }
+
+    .kek_menu > a:nth-of-type(2n + 1)
+    {
+        background-color: #226ccb;
+    }
+
+    .kek_menu > a:nth-of-type(2n + 2)
+    {
+        background-color: rgba(95, 0, 255, 1);
+    }
+}

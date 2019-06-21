@@ -1,0 +1,44 @@
+/* Chat UX Style */
+#chat
+{
+    height: 90%;
+    position: relative;
+    margin-top: 10px;
+}
+
+.chat_header
+{
+    width: 90%;
+    border-bottom: 1px solid #000;
+}
+
+#chat > .messages
+{
+    height: 90%;
+    width: 90%;
+    margin: 0 5%;
+}
+
+#chat > .input_wrapper
+{
+
+}
+
+.message_content
+{
+    float: left;
+    font-size: 10.5pt;
+    line-height: 1.15;
+    text-align: left;
+}
+
+.message
+{
+    width: 100%;
+    padding: 6px 0;
+}
+
+.message > #username
+{
+    margin-right: 5px;
+}

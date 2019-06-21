@@ -1,0 +1,50 @@
+.components
+{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.components > button
+{
+    opacity: 1;
+}
+
+.components > button:hover
+{
+    opacity: 0.75;
+}
+
+.component
+{
+    width: 100%;
+    float: left;
+    display: block;
+}
+
+.component > p,
+.component > input,
+.component > select,
+.component > button
+{
+    float: left;
+    width: 33.3%;
+    height: 30px;
+    transition: all 0.2s;
+}
+
+.component > input
+{
+    padding: 5px 10px;
+}
+
+.component > button
+{
+    border: 1px inset #fff;
+    outline: 0;
+}
+
+.component > button:hover
+{
+    opacity: 0.8;
+}
