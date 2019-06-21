@@ -8,7 +8,7 @@ function __init_carousel()
         $(this).owlCarousel
         (
             {
-                items:3,
+                items:2,
                 responsiveClass:true,
                 responsiveBaseWidth:"#Container",
                 responsiveRefreshRate:500,

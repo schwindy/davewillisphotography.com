@@ -259,6 +259,12 @@ if (empty($_SESSION)) {
     ga('send', 'pageview');
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<script src="/lib/owl-carousel/owl.carousel.js"></script>
+<link href="/lib/owl-carousel/owl.carousel.css" rel="stylesheet">
+<link href="/lib/owl-carousel/owl.theme.css" rel="stylesheet">
+<link href="/lib/owl-carousel/owl.transitions.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js"></script>
