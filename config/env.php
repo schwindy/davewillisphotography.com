@@ -1,9 +1,12 @@
 <?php
 
-// Order matters a lot
+// @CONFIG: Order matters a lot
 $environments = [
     "davewillisphotography.com" => "Application.master.",
 ];
+
+// @CONFIG: This value will override the analyzed environment if no match in $environments is found
+$ENV_OVERRIDE = "dev";
 
 $loaded = false;
 if (empty($environments)) {
@@ -16,7 +19,7 @@ if (empty($environments)) {
     if (file_exists($env_config)) {
         include_once($env_config);
     } else {
-        if ($env === "development") {
+        if ($env === "dev") {
             echo "config/env: No Dev Config Found\n";
         } else {
             require_once(ENVIRONMENT_CONFIG_PATH . "dev.php");
@@ -38,7 +41,7 @@ if (empty($environments)) {
             if (file_exists($env_config)) {
                 include_once($env_config);
             } else {
-                if ($env === "development") {
+                if ($env === "dev") {
                     echo "config/env: No Dev Config Found\n";
                 } else {
                     require_once(ENVIRONMENT_CONFIG_PATH . "dev.php");
@@ -52,6 +55,15 @@ if (empty($environments)) {
 }
 
 if (!$loaded) {
-    //echo "\nconfig/env: Warning: Environment configuration not found! $env | Using default: " . ENVIRONMENT_DEFAULT_FILE;
-    require_once(ENVIRONMENT_DEFAULT_FILE);
+    if (!empty($ENV_OVERRIDE)) {
+        if (!defined('ENVIRONMENT')) {
+            define('ENVIRONMENT', $ENV_OVERRIDE);
+        }
+
+        $env_config = ENVIRONMENT_CONFIG_PATH . "$ENV_OVERRIDE.php";
+        require_once($env_config);
+    } else {
+        //echo "\nconfig/env: Warning: Environment configuration not found! $env | Using default: " . ENVIRONMENT_DEFAULT_FILE;
+        require_once(ENVIRONMENT_DEFAULT_FILE);
+    }
 }

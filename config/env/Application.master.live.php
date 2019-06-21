@@ -3,8 +3,8 @@
 // Database
 define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'davewillisphotography');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_USER', 'davewillis');
+define('DB_PASS', '%H$nqOLZZRyD');
 define('DB_DISPLAY_DEBUG', false);
 define('DB_ENABLE_REDIS', false);
 
