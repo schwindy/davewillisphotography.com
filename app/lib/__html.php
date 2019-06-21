@@ -24,16 +24,20 @@ function __html($type = 'table', $args = [])
         }
     }
 
+    if ($type == "script") {
+        $args = ['prop' => $args];
+    }
+
     $args['prop'] = empty($args['prop']) ? [] : $args['prop'];
     $args['text'] = empty($args['text']) ? '' : $args['text'];
     $args['type'] = empty($type) ? $args['type'] : $type;
-    $args['function'] = empty($args['function']) ? "__html_$args[type]" : $args['function'];
-    $args['function'] = function_exists($args['function']) ? "__html_$args[type]" : "__html_";
-
+    $args['function'] = $args['function'] ?? "__html_$args[type]";
+    $args['function'] = function_exists($args['function']) ? $args['function'] : "__html_";
     $element = call_user_func($args['function'], $args);
     if (empty($element['type'])) {
         return false;
     }
+
     $element['html'] = trim($element['html']);
     $element['after'] = empty($element['after']) ? "" : $element['after'];
     $element['before'] = empty($element['before']) ? "" : $element['before'];
@@ -418,6 +422,15 @@ function __html_p($args = [])
         'html' => $args['text'],
         'prop' => $args['prop'],
         'type' => "p",
+    ];
+}
+
+function __html_script($args = [])
+{
+    return [
+        'html' => $args['text'] ?? "",
+        'prop' => $args['prop'],
+        'type' => "script",
     ];
 }
 

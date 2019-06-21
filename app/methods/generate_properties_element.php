@@ -40,8 +40,9 @@ function generate_properties_element($element = [], $skips = [])
     $html .= "</div>";
 
     if ($skips !== 'nojs') {
-        $html .= __html('js', ['src' => '/js/kek/properties.js']);
+        $html .= __html('script', ['src' => '/js/kek/properties.js']);
     }
+
     $html .= __html('css', ['href' => '/css/classes/Properties.css']);
 
     return $html;
