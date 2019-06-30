@@ -5,7 +5,7 @@ function upload_file()
     if(empty($_REQUEST['user_id']))new APIResponse(0, "Missing user_id");
     if(empty($_FILES) || empty($_FILES['upload']) || empty($_FILES['upload']['tmp_name']))
     {
-        redirect_to("/admin/support/docs");
+        redirect_to("/admin/docs");
     }
 
     $db = Database::getInstance();
@@ -46,5 +46,5 @@ function upload_file()
         ]
     );
 
-    redirect_to("/admin/support/docs/view?id=$asset_id");
+    redirect_to("/admin/docs/view?id=$asset_id");
 }

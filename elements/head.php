@@ -265,7 +265,6 @@ if (empty($_SESSION)) {
 <link href="/lib/owl-carousel/owl.theme.css" rel="stylesheet">
 <link href="/lib/owl-carousel/owl.transitions.css" rel="stylesheet">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js"></script>
 <script>

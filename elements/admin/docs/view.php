@@ -2,7 +2,7 @@
 acl_require_admin(CURRENT_PATH);
 
 $row = $db->get_row("SELECT * FROM docs WHERE id='$_REQUEST[id]'");
-if(empty($row))redirect_to('/admin/support/docs/');
+if(empty($row))redirect_to('/admin/docs/');
 
 $doc = new Doc($row);
 $checkbox_public = $doc->is_public==='true'?'check_box':'check_box_outline_blank';
@@ -13,7 +13,7 @@ echo __html
     [
         'class'=>'text_left',
         'text'=>
-            __html('h1', ['text'=>"Support Document", 'prop' =>['class' =>'text_left']]).
+            __html('h1', ['text'=>"Gallery Document", 'prop' =>['class' =>'text_left']]).
             __html('br').
             __html('edit_button',
             [
@@ -61,7 +61,7 @@ echo __html
     ]
 );
 
-echo "<div class='card'><iframe src='".$doc->file_url."'></iframe></div>";
+echo "<div class='card'><iframe src='".$doc->file_url."' style='height: 1080px !important;'></iframe></div>";
 ?>
 
 <script>

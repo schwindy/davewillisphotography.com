@@ -66,7 +66,7 @@ echo empty($search['elements'])?$search['html']:__html
             'button'=>
             [
                 'class'=>'button blue_bg white print_invisible',
-                'href'=>'/admin/support/docs/view?id=$id',
+                'href'=>'/admin/docs/view?id=$id',
                 'tokens'=>['$id'=>'id']
             ]
         ],
