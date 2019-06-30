@@ -7,8 +7,8 @@ if (!empty($user) && $user['account_type'] !== 'admin') {
 <div class="card text_center">
     <a href="/"><img class="text_center" src="/img/logo/circle_icon_sm.png"></a>
     <h1>Log In</h1>
-    <h4>Access Your Cryptolytics Account</h4>
-    <p>Do you need an account? <a href="/plans">Sign Up</a> is free!</p>
+    <h4>Access Your Account</h4>
+    <p>Do you need an account? <a href="/signup">Sign Up</a> is free!</p>
 </div>
 
 <div class="card">

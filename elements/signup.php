@@ -3,13 +3,13 @@ if (!empty($user) && $user['id'] !== 'kek') {
     redirect_to('/logout');
 }
 if (empty($_REQUEST['plan'])) {
-    redirect_to('/plans');
+    //redirect_to('/plans');
 }
 ?>
 <div class="card text_center">
-    <a href="/" title="Cryptolytics" alt="Cryptolytics"><img class="text_center" src="/img/logo/circle_icon_sm.png"></a>
+    <a href="/" title="" alt=""><img class="text_center" src="/img/logo/circle_icon_sm.png"></a>
     <h1>Sign Up</h1>
-    <h4>Create a Cryptolytics Account</h4>
+    <h4>Create an Account</h4>
     <p>Already have an account? <a href="/login">Log In</a></p>
 </div>
 
@@ -83,7 +83,7 @@ echo __html('form', [
         if(invalid) return false;
         signup_busy = true;
 
-        data["account_type"] = '<?php echo $_REQUEST['plan']?>';
+        data["account_type"] = '<?php echo $_REQUEST['plan'] ?? "" ?>';
 
         ajax
         (
