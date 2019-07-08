@@ -175,6 +175,7 @@ function __search($args)
         if (empty($args['q'])) {
             // Run Default Search
             $args['count'] = $db->count($args['table_name'], $args['where']);
+            $args['where'] = "$args[where] AND $args[where_search]";
         } else {
             // Run Primary Search
             $args['count'] = $db->count($args['table_name'], "$args[where] AND $args[where_search]");

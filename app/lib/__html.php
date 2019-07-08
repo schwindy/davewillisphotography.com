@@ -257,9 +257,11 @@ function __html_gallery_item($args = [])
     $args['prop']['id'] = empty($args['prop']['id']) ? '' : $args['prop']['id'];
     $prop = $args['prop'];
 
-    $args['text'] = "<a href='$prop[image]' data-featherlight='image'><img class='gallery_item_thumbnail' src='$prop[image]'></a>
+    $args['text'] = "<a href='$prop[file_url]' data-featherlight='image'><img class='gallery_item_thumbnail' src='$prop[file_url]'></a>
     <h3 class='gallery_item_title'>$prop[display_name]</h3>
-    <p class='gallery_item_bio'>$prop[bio]</p>";
+    <p class='gallery_item_bio'>$prop[bio]</p>
+    <br>
+    <p class='gallery_item_created'>$prop[created]</p>";
 
     return [
         'html' => $args['text'],

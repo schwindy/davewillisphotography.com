@@ -8,6 +8,28 @@ echo __html('card', [
     'text'  => __html('h1', COMPANY_NAME . " Admin Portal")
 ]);
 
+echo __html('menu', [
+    'title'   => 'kekPHP Menu',
+    'buttons' => [
+        'Configuration' => [
+            'href' => '/admin/kek/config',
+            'text' => 'Manage Configuration',
+        ],
+        'Elements'      => [
+            'href' => '/admin/kek/elements',
+            'text' => 'Manage Elements',
+        ],
+        'Pages'         => [
+            'href' => '/admin/kek/pages',
+            'text' => 'Manage Pages',
+        ],
+        'Sales'         => [
+            'href' => '/admin/sales',
+            'text' => 'Analyze Sales',
+        ],
+    ],
+]);
+
 echo __html('card', [
     'class' => 'text_center',
     'text'  => __html('h2', "User Statistics")
