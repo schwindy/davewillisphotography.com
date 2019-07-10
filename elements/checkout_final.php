@@ -64,7 +64,7 @@ if(!empty($_REQUEST["payment_method_nonce"]))
 <section class="braintree_wrapper card">
     <section class="__splash">
         <div class="__splash_logo">
-            <img class="width_100" src="/img/404.png">
+            <img class="width_50" src="/img/404.png">
         </div>
         <h2 class="bold"><?php echo SITE_NAME." - ".COMPANY_NAME_LONG?></h2>
         <br>
@@ -91,7 +91,7 @@ if(!empty($_REQUEST["payment_method_nonce"]))
     {
         braintree.setup
         (
-            "<?php try { echo Braintree\ClientToken::generate(); } catch (Exception $e) { echo vpre($e); }?>",
+            "<?php echo Braintree\ClientToken::generate();?>",
             "dropin",
             {
                 container:"payment-form"
