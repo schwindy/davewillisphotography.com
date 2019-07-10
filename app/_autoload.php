@@ -27,6 +27,11 @@ function __kekPHP_autoload()
         require_once($file);
     }
 
+    // Include Environment Configuration
+    if (file_exists(CONFIG_PATH . "env.php")) {
+        include_once(CONFIG_PATH . "env.php");
+    }
+
     // Autoload Lib Methods
     foreach (glob(APP_PATH . "lib/*.php") as $file) {
         include_once($file);
@@ -34,9 +39,10 @@ function __kekPHP_autoload()
 
     // Autoload Config
     foreach (glob(CONFIG_PATH . "*.php") as $file) {
-        if (strpos($file, "/config/global.php") !== false) {
+        if ($file === "env.php" || strpos($file, "/config/global.php") !== false) {
             continue;
         }
+
         include_once($file);
     }
 

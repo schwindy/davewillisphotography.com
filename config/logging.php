@@ -1,6 +1,6 @@
 <?php
 if (!defined('PHP_LOG_LEVEL')) {
-    define('PHP_LOG_LEVEL', E_ERROR);
+    define('PHP_LOG_LEVEL', E_ALL);
 }
 
 if (!defined('KEK_LOG_LEVEL')) {

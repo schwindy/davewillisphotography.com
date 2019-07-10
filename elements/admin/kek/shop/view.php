@@ -14,7 +14,7 @@ echo __html('card', [
             ['text' => "<b>Updated:</b> $row[updated]"]) . __html('p', ['text' => "<b>Notes:</b> $row[notes]"])
 ]);
 
-echo __html('h1', ['text' => "Shop Item Preview"]);
+echo __html('h1', ['text' => "Shop Item Preview", 'class' => 'text_center']);
 
 echo __html('card', [
     'prop' => ['class' => 'shop_grid'],

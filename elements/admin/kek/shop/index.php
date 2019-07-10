@@ -2,7 +2,7 @@
 acl_require_admin(CURRENT_PATH);
 
 echo __html('card', [
-    'text' => __html('h1', ['text' => "Shop Management"]) . __html('search', ['action' => '/admin/kek/shop/search'])
+    'text' => __html('h1', ['text' => "Shop Management", 'class' => 'text_center']) . __html('search', ['action' => '/admin/kek/shop/search'])
 ]);
 
 echo __html('menu', [
@@ -24,21 +24,21 @@ if (empty($elements)) {
 }
 
 echo __html('table', [
-    'title'    => 'Shop Items',
+    'title' => 'Shop Items',
     'elements' => $elements,
-    'headers'  => [
-        'Name'    => 'button width_5',
-        'Type'    => 'button width_5',
+    'headers' => [
+        'Name' => 'button width_5',
+        'Type' => 'button width_5',
         'Updated' => 'button width_5',
-        'Manage'  => 'button width_5',
+        'Manage' => 'button width_5',
     ],
-    'fields'   => [
+    'fields' => [
         'display_name' => '',
-        'type'         => '',
-        'updated'      => '',
-        'button'       => [
-            'class'  => 'button blue_bg white',
-            'href'   => '/admin/kek/shop/view?id=$id',
+        'type' => '',
+        'updated' => '',
+        'button' => [
+            'class' => 'button blue_bg white',
+            'href' => '/admin/kek/shop/view?id=$id',
             'tokens' => [
                 '$id' => 'id'
             ]

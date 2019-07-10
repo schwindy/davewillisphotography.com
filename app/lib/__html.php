@@ -28,6 +28,7 @@ function __html($type = 'table', $args = [])
         $args = ['prop' => $args];
     }
 
+    $args['class'] = empty($args['class']) ? "" : $args['class'];
     $args['prop'] = empty($args['prop']) ? [] : $args['prop'];
     $args['text'] = empty($args['text']) ? '' : $args['text'];
     $args['type'] = empty($type) ? $args['type'] : $type;
@@ -481,14 +482,6 @@ function __html_shop_item($args = [])
     $prop = $args['prop'];
     $prop['price'] = empty($args['acl']) ? $prop['price'] : $prop["price_$args[acl]"];
     $prop['price'] = empty($prop['price']) ? $args['prop']['price'] : $prop["price"];
-
-    $dealer = get_dealer();
-    if (!empty($dealer)) {
-        $level_discount = __config("SHOP_DISCOUNT_dealers_$dealer[account_level]");
-        if (!empty($level_discount)) {
-            $prop['price'] *= (float)$level_discount;
-        }
-    }
 
     $options = empty($args['options']) ? '' : generate_options($args['options']);
 

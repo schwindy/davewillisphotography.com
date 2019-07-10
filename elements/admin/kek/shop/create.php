@@ -16,8 +16,15 @@ acl_require_admin(CURRENT_PATH);
         <p class="bold text_left">Price ($)</p>
         <input id="item_price" placeholder="0.00">
 
-        <p class="bold text_left">Image URL (ex: /img/logo.png)</p>
-        <input id="item_image" placeholder="Image URL">
+        <p class="bold text_left">Thumbnail Image (<a href="/admin/docs/create" target="_blank" class="blue">Create Doc</a>)</p>
+        <?php echo __dropdown_docs
+        (
+            [
+                'name'=>'item_image',
+                'field'=>'file_url',
+                'class'=>'width_100 padding_xxsm margin_sm_y font_xlg text_center'
+            ]
+        )?>
 
         <p class="bold text_left">Notes</p>
         <textarea id="notes" placeholder="Notes (Admin Only)"></textarea>
@@ -35,7 +42,7 @@ acl_require_admin(CURRENT_PATH);
     $(function(){
         properties = read_properties();
 
-        $('#submit').click(function(){
+        $('#kek_submit').click(function(){
             properties = read_properties();
             properties.bio = $('#create_element').children('#item_bio').val();
             properties.image = $('#create_element').children('#item_image').val();
