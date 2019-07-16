@@ -28,7 +28,7 @@ echo __html
             'Create Document'=>
             [
                 'href'=>'/admin/docs/create',
-                'text'=>'Create a New Support Document',
+                'text'=>'Create a New Gallery Document',
             ],
         ],
     ]
@@ -52,6 +52,8 @@ echo empty($search['elements'])?$search['html']:__html
         'headers'=>
         [
             'Display Name'=>'',
+            'Category'=>'',
+            'Sub-Category'=>'',
             'Is Public'=>'',
             'File Type'=>'',
             'Created'=>'',
@@ -60,6 +62,8 @@ echo empty($search['elements'])?$search['html']:__html
         'fields'=>
         [
             'display_name'=> ['class'=>'bold'],
+            'category'=>[],
+            'sub_category'=>[],
             'is_public'=>[],
             'file_type'=>[],
             'created'=>[],
